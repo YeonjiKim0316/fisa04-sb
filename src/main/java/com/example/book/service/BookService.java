@@ -33,4 +33,12 @@ public class BookService {
     public Optional<Book> getBookById(Long id) {
         return bookRepository.findById(id);
     }
+
+    public void deleteBookById(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    public List<Book> getBookByTitleAndAuthor(String title, String author) {
+        return bookRepository.findByTitleContainingAndAuthorContaining(title, author);
+    }
 }
