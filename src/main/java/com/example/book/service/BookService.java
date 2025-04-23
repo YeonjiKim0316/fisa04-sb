@@ -41,4 +41,22 @@ public class BookService {
     public List<Book> getBookByTitleAndAuthor(String title, String author) {
         return bookRepository.findByTitleContainingAndAuthorContaining(title, author);
     }
+
+    public Book updateBookById2(Long id, Book book) {
+        // 1. 전체 내용을 books 테이블에서 조회
+        Book exsitingBook = bookRepository.findById(id).orElse(null); // id가 없으면 null을 반환
+
+        // 2. 클라이언트가 Body에 준 book의 일부 변경사항을 행에 반영한다
+        if (book.getTitle() != null) {
+            // 책이름이 기존과 다르면 책이름 변경
+            exsitingBook.setTitle(book.getTitle());
+        } else if (book.getAuthor() != null ) {
+            exsitingBook.setAuthor(book.getAuthor());
+        } else if (book.getPage() != 0 ) {
+            exsitingBook.setPage(book.getPage());
+        }
+        // 3. 그 결과를 service를 통해 repository로 전달한다
+//        기존 book의 변경사항을 더해서 다시 db에 반영
+        return bookRepository.save(exsitingBook);
+    }
 }

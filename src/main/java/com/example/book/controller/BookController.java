@@ -43,7 +43,23 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
-    // 책 내용 수정
+    // 책 내용 수정 - 삽입을 위해 만든 saveBook을 id를 달아서 재사용
+    @PutMapping("/{id}") // 전부를 가져가서 변경
+    public void updateBookById(@PathVariable Long id, @RequestBody Book book){
+        // 1. 전체 내용을 books 테이블에서 조회
+        book.setId(id);
+        // 2. 클라이언트가 Body에 준 book의 모든 변경사항을 행에 반영한다
+        // 3. 그 결과를 service를 통해 repository로 전달한다
+        bookService.saveBook(book);
+    }
+    
+    @PatchMapping("/{id}") // 변경할 사항만 가져가서 변경
+    public void updateBookById2(@PathVariable Long id, @RequestBody Book book) {
+        // 1. 전체 내용을 books 테이블에서 조회
+        // 2. 클라이언트가 Body에 준 book의 일부 변경사항을 행에 반영한다
+        // 3. 그 결과를 service를 통해 repository로 전달한다
+        bookService.updateBookById2(id, book);
+    }
 
     // 책 삭제
     @DeleteMapping("/{id}")

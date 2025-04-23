@@ -3,6 +3,8 @@ package com.example.book.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 // book 이라는 테이블에
 // 각 어노테이션은 바로 밑의 줄에 작성된 코드블록만 반영됨
 @Data
@@ -20,4 +22,7 @@ public class Book {
     private String author;
     private String genre;
     private int page;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
