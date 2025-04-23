@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -24,7 +25,12 @@ public class BookController {
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
+
     // 특정 id로 특정 책 조회
+    @GetMapping("/{id}") // @PathVarible  Optional<자료형>은 null로 발생하는 예외를 처리해주는 wrapper class입니다.
+    public Optional<Book> getBookById(@PathVariable Long id){
+        return bookService.getBookById(id);
+    }
 
     // 책 삽입
     @PostMapping        // @RequestBody : body에 실려서 오는 값을 Book 자료형으로 받겠음

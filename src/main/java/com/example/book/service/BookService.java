@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 // 특정 동작을 수행하기 위해서 repository에서 값을 실어다 나릅니다.
 // public이랑 private을 사용합니다. - 캡슐화 구현
@@ -27,5 +28,9 @@ public class BookService {
 
     public Book saveBook(Book book) {
         return bookRepository.save(book);
+    }
+
+    public Optional<Book> getBookById(Long id) {
+        return bookRepository.findById(id);
     }
 }
