@@ -14,11 +14,13 @@ public class HelloController {
 //        return "Hello SpringBoot!";
 //    }
 
+//    http://localhost:8080/신짱구
     @GetMapping("/{id}")
     public String sayHello2(@PathVariable String id) {
         return "Hello"+ id;
     }
 
+//    http://localhost:8080/?name=%EC%8B%A0%EC%A7%B1%EA%B5%AC
     @GetMapping
     public String sayHello(@RequestParam(value = "name", defaultValue = "Guest") String name) {
         return "Hello, " + name + "!";
