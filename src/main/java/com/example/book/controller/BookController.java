@@ -5,6 +5,8 @@ import com.example.book.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +14,8 @@ import java.util.Optional;
 
 
 @Tag(name = "swagger 테스트 API", description = "swagger 테스트를 진행하는 API")
-@RestController
+//@RestController
+@Controller
 @RequestMapping("/books")
 public class BookController {
 
@@ -27,8 +30,10 @@ public class BookController {
     // 전체 책 조회
     @Operation(summary = "Book 정보 모두 조회", description = "Book의 전체 정보를 조회합니다.")
     @GetMapping
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public String getAllBooks(Model model) { // String으로 리턴타입이 바뀌는 이유는 bookmain의 html 코드와 model로 전달한 데이터가 합쳐서 화면을 만든 html 코드가 최종 리턴되므로
+        List<Book> books = bookService.getAllBooks();
+        model.addAttribute("books", books);
+        return "bookmain"; // model을 통해 렌더링할 html 파일의 경로를 적어줍니다.
     }
 
     // 특정 id로 특정 책 조회
