@@ -67,9 +67,22 @@ public class BookController {
         bookService.deleteBookById(id);
     }
 
-    // 책을 저자로 조회하는 API
-    @GetMapping("/select10") // select10?title=스프링부트&author=장정우
+    // 책을 저자와 책이름으로 조회하는 API
+    @GetMapping("/select1") // select?title=스프링부트&author=장정우
     public List<Book> getBookByTitleAndAuthor(@RequestParam String title, @RequestParam String author) {
         return bookService.getBookByTitleAndAuthor(title, author);
+    }
+
+    //    - 책이름으로 책을 검색하는 API
+    @GetMapping("/select")
+    public List<Book> getBookByTitle(@RequestParam String title){
+        return bookService.getBookByTitle(title);
+    }
+
+    //    - 책의 최소/최대 페이지로 책을 검색하는 API
+    //    - //    select3?minPage=10&maxPage=3001
+    @GetMapping("/select3")
+    public List<Book> getBookByPagesBetween(@RequestParam int minPage, @RequestParam int maxPage) {
+        return bookService.getBookByPagesBetween(minPage, maxPage);
     }
 }

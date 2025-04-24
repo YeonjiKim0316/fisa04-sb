@@ -40,7 +40,8 @@ public class BookService {
     }
 
     public List<Book> getBookByTitleAndAuthor(String title, String author) {
-        return bookRepository.findByTitleContainingAndAuthorContaining(title, author);
+//        return bookRepository.findByTitleContainingAndAuthorContaining(title, author); //
+        return bookRepository.findByTitleContainingOrAuthorContaining2(title, author);
     }
 
     public Book updateBookById2(Long id, Book book) {
@@ -59,5 +60,13 @@ public class BookService {
         // 3. 그 결과를 service를 통해 repository로 전달한다
 //        기존 book의 변경사항을 더해서 다시 db에 반영
         return bookRepository.save(exsitingBook);
+    }
+
+    public List<Book> getBookByTitle(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
+
+    public List<Book> getBookByPagesBetween(int minPage, int maxPage) {
+        return bookRepository.findByPageBetween(minPage, maxPage);
     }
 }
