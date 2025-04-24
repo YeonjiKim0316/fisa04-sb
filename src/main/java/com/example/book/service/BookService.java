@@ -14,6 +14,7 @@ import java.util.Optional;
 public class BookService {
 
     @Autowired // 생략 가능
+//    BookRepository bookRepository = new BookRepository();
     private BookRepository bookRepository; // 스프링부트가 의존성 주입해줍니다. 그래서 우리가 직접 만들고 사용할 필요가 없습니다.
 
     // 생성자
