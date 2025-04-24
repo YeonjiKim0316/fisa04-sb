@@ -1,0 +1,43 @@
+<!-- templates/form-edit.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>책 수정</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg-warning text-white">✏️ 책 수정</div>
+    <div class="card-body">
+      <form th:action="@{'/books/' + ${book.id} + '/update'}" method="post">
+
+      <div class="mb-3">
+          <label class="form-label">제목</label>
+          <input type="text" class="form-control" name="title" th:value="${book.title}" required/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">저자</label>
+          <input type="text" class="form-control" name="author" th:value="${book.author}"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">장르</label>
+          <input type="text" class="form-control" name="genre" th:value="${book.genre}"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">페이지</label>
+          <input type="number" class="form-control" name="page" th:value="${book.page}"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">가격</label>
+          <input type="number" class="form-control" name="price" th:value="${book.price}"/>
+        </div>
+        <button type="submit" class="btn btn-primary">수정 완료</button>
+        <a th:href="@{/books}" class="btn btn-secondary ms-2">취소</a>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

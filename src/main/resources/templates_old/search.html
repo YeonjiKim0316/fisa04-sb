@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>책 조회 결과</title>
+</head>
+<body>
+<h1>책 조회 결과</h1>
+<table>
+  <thead>
+  <tr>
+    <th>제목</th>
+    <th>저자</th>
+    <th>페이지 수</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="book : ${books}">
+    <td th:text="${book.title}">제목</td>
+    <td th:text="${book.author}">저자</td>
+    <td th:text="${book.page}">페이지 수</td>
+  </tr>
+  </tbody>
+</table>
+<a href="/books">목록으로 돌아가기</a>
+</body>
+</html>
