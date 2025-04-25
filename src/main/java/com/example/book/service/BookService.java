@@ -69,4 +69,19 @@ public class BookService {
     public List<Book> getBookByPagesBetween(int minPage, int maxPage) {
         return bookRepository.findByPageBetween(minPage, maxPage);
     }
+
+
+
+
+    public List<Book> getBookByTitleContainingOrAuthorContaining(String title, String author) {
+        if (title != null && !title.isEmpty() && author != null && !author.isEmpty()) {
+            return bookRepository.findByTitleContainingOrAuthorContaining2(title, author);
+        } else if (title != null && !title.isEmpty()) {
+            return bookRepository.findByTitleContaining(title);
+        } else if (author != null && !author.isEmpty()) {
+            return bookRepository.findByAuthorContaining(author);
+        } else {
+            return List.of(); // 빈 리스트 반환
+        }
+    }
 }

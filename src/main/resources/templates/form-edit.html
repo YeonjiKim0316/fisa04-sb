@@ -1,12 +1,8 @@
-<!-- templates/form-edit.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>책 수정</title>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head th:replace="~{fragments/head :: commonHead}"></head>
+<body class="bg-light">
+
 <div class="container mt-5">
   <div class="card">
     <div class="card-header bg-warning text-white">✏️ 책 수정</div>
@@ -38,6 +34,12 @@
       </form>
     </div>
   </div>
+
+  <!-- 공통 푸터 -->
+  <div th:replace="~{fragments/footer :: commonFooter}"></div>
 </div>
+
+<!-- Bootstrap JS (필요 시 추가) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

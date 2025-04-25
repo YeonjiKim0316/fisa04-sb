@@ -26,4 +26,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             + "b.author LIKE %:author%")
     List<Book> findByTitleContainingOrAuthorContaining2(@Param("title") String title, @Param("author") String author);
 
+    List<Book> findByAuthorContaining(String author);
 }

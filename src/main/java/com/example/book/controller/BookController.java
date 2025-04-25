@@ -54,7 +54,10 @@ public class BookController {
     public String searchBooks(@RequestParam String title,
                               @RequestParam String author,
                               Model model) {
-        List<Book> results = bookService.getBookByTitleAndAuthor(title, author);
+//        List<Book> results = bookService.getBookByTitleAndAuthor(title, author);
+        List<Book> results = bookService.getBookByTitleContainingOrAuthorContaining(title, author);
+
+
         model.addAttribute("books", results);
         return "bookmain"; // 검색 결과는 목록 fragment로 출력
     }
