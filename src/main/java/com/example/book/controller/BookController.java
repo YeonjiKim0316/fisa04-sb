@@ -26,6 +26,12 @@ public class BookController {
     public String getAllBooks(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
+//        log.trace("trace-사용자 입장");
+//        log.debug("debug-사용자 입장");
+//        log.info("info-사용자 입장");
+//        log.warn("warn-사용자 입장");
+//        log.error("error-사용자 입장");
+        log.info("책 전체 목록 조회: {} 권", books.size());
         return "bookmain"; // bookmain.html + book-list fragment
     }
 
@@ -33,6 +39,7 @@ public class BookController {
     @GetMapping("/add")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book()); // 폼 바인딩용 빈 객체
+        log.info("책 추가 폼 진입");
         return "form-add"; // bookmain.html + form-add fragment
     }
 
@@ -40,6 +47,7 @@ public class BookController {
     @PostMapping
     public String saveBook(@ModelAttribute Book book) {
         bookService.saveBook(book);
+        log.info("책 추가: {} / {}", book.getTitle(), book.toString());
         return "redirect:/books"; // 저장 후 목록으로 리다이렉트
     }
 

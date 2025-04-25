@@ -2,6 +2,7 @@ package com.example.book.service;
 
 import com.example.book.dao.Book;
 import com.example.book.repository.BookRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 // 특정 동작을 수행하기 위해서 repository에서 값을 실어다 나릅니다.
 // public이랑 private을 사용합니다. - 캡슐화 구현
+@Slf4j
 @Service
 public class BookService {
 
@@ -24,6 +26,7 @@ public class BookService {
 
     // 모든 책 조회
     public List<Book> getAllBooks() {
+         log.debug("사용자 책 조회 요청");
         return bookRepository.findAll();
     }
 
@@ -46,6 +49,7 @@ public class BookService {
 
     public Book updateBookById2(Long id, Book book) {
         // 1. 전체 내용을 books 테이블에서 조회
+
         Book exsitingBook = bookRepository.findById(id).orElse(null); // id가 없으면 null을 반환
 
         // 2. 클라이언트가 Body에 준 book의 일부 변경사항을 행에 반영한다
